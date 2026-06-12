@@ -1,4 +1,3 @@
-// app/build.gradle (Groovy DSL — AIDE compatible, NOT .kts)
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -39,7 +38,9 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.core:core-ktx:1.16.0'
+    // Stable aur compatible versions jo AGP 8.3.0 ke sath bina lafde ke compile honge
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
 }
+
