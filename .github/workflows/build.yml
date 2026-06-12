@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -19,19 +21,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # Ye step direct runner me global gradle command install kar dega
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
 
-    # Ab hum gradlew script ko chhor kar direct 'gradle' command chalayenge
-    - name: Build Debug APK
+    - name: Clean and Build Debug APK
       run: |
         cd android-autotyper
-        gradle assembleDebug --no-daemon --stacktrace
+        chmod +x gradlew
+        ./gradlew clean assembleDebug --no-daemon --stacktrace
 
-    - name: Upload Debug APK
+    - name: Find and Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: AutoTyper-Debug-APK
+        name: AutoTyper-Package-Fixed
         path: android-autotyper/app/build/outputs/apk/debug/*.apk
         retention-days: 30
