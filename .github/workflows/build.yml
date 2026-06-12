@@ -1,0 +1,39 @@
+name: Build AutoTyper APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android-autotyper
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Generate Gradle Wrapper
+      run: |
+        sudo apt-get install -y gradle --quiet
+        gradle wrapper --gradle-version=8.6 --distribution-type=bin
+        chmod +x gradlew
+
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: AutoTyper-Debug-APK
+        path: android-autotyper/app/build/outputs/apk/debug/*.apk
+        retention-days: 30
