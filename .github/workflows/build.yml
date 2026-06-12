@@ -22,11 +22,9 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
 
-    - name: Build Debug APK
+    - name: Give Permission and Build APK
       run: |
-        cd android-autotyper
-        chmod +x gradlew
-        ./gradlew assembleDebug --no-daemon --stacktrace
+        cd android-autotyper && chmod +x gradlew && ./gradlew assembleDebug --no-daemon --stacktrace
 
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
@@ -34,4 +32,3 @@ jobs:
         name: AutoTyper-Debug-APK
         path: android-autotyper/app/build/outputs/apk/debug/*.apk
         retention-days: 30
-
