@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: android-autotyper
 
     steps:
     - name: Checkout code
@@ -22,18 +19,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Generate Gradle Wrapper
-      run: |
-        sudo apt-get install -y gradle --quiet
-        gradle wrapper --gradle-version=8.6 --distribution-type=bin
-        chmod +x gradlew
+    # Alag se gradle download karne ke bajaye direct GitHub ka standard action use karenge
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --no-daemon --stacktrace
-
-    - name: Upload Debug APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: AutoTyper-Debug-APK
-        path: android-autotyper/app/build/outputs/apk/debug/*.apk
-        retention-days: 30
+      run: |
+        cd android-autotyper
+        chmod +x gradlew
+        ./gradlew assembleDebug --no-daemon --stacktrace
