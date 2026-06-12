@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    FIXED VERSION — AIDE compatible
+    Changes from original:
+      1. ic_launcher → @drawable/ic_launcher  (AIDE uses drawable, not mipmap by default)
+      2. Removed android:roundIcon (not needed, causes error if missing)
+      3. Theme.AutoTyper → @style/AppTheme    (defined in styles.xml below)
+      4. foregroundServiceType="specialUse"  → "dataSync" (specialUse needs API 34, not supported by AIDE)
+      5. Removed <property> tag (API 34 only)
+      6. Removed FOREGROUND_SERVICE_SPECIAL_USE permission (API 34 only)
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.autotyper.app">
+
+    <!-- Floating overlay permission -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- File reading (Android 6 to 12) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <!-- CPU alive during loop -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Foreground service (required Android 8+) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Main setup screen -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Floating overlay service — foregroundServiceType="dataSync" works from API 26 -->
+        <service
+            android:name=".service.OverlayService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Accessibility engine -->
+        <service
+            android:name=".service.AutoTyperAccessibilityService"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Overlay Control Panel Layout
+    ===============================
+    This layout is inflated by OverlayService and added directly to WindowManager.
+    It is NOT associated with any Activity or Fragment.
+
+    Key design decisions:
+    - dragHandle is the top bar; touch events on it move the overlay.
+    - FLAG_NOT_FOCUSABLE is set on the window, so we must use
+      FLAG_NOT_TOUCH_MODAL to allow clicks to pass through to the app underneath
+      everywhere EXCEPT on our overlay view itself.
+    - The EditText for delay requires the window flag to temporarily allow focus;
+      handle this in OverlayService if keyboard input is needed.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/overlay_background"
+    android:elevation="8dp">
+
+    <!-- ═══════════════ DRAG HANDLE / TITLE BAR ═══════════════ -->
+    <LinearLayout
+        android:id="@+id/dragHandle"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:background="#CC1A1A2E"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PF AutoType"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Close/Hide button (optional: stops service) -->
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:background="#AAFF4444"
+            android:textSize="12sp"
+            android:padding="0dp" />
+    </LinearLayout>
+
+    <!-- ═══════════════ INNER CONTENT AREA ═══════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#CC0D0D1F"
+        android:padding="14dp">
+
+        <!-- Sub-title label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AUTO TYPER"
+            android:textColor="#8888CC"
+            android:textSize="10sp"
+            android:letterSpacing="0.2"
+            android:layout_marginBottom="10dp" />
+
+        <!-- ─── Upload .txt File Button ─── -->
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="⬆  Upload .txt File"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#7B2FBE"
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- ─── Loaded File Name Display ─── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:background="#22FFFFFF"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tvFileName"
+                android:text="No file loaded"
+                android:textColor="#AAAACC"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <!-- ─── Typing Delay Label ─── -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Typing Delay (ms)"
+            android:textColor="#8888CC"
+            android:textSize="11sp"
+            android:layout_marginBottom="4dp" />
+
+        <!-- ─── Delay Input Field ─── -->
+        <EditText
+            android:id="@+id/etDelay"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:inputType="number"
+            android:text="1000"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#666699"
+            android:background="#33FFFFFF"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ─── START / STOP Buttons ─── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="▶  START"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2E7D32"
+                android:textSize="12sp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="■  STOP"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#C62828"
+                android:textSize="12sp"
+                android:layout_marginStart="6dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

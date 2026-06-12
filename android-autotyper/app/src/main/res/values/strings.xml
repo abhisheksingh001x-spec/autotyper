@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PF AutoTyper</string>
+    <string name="accessibility_service_label">AutoTyper</string>
+    <string name="accessibility_service_description">AutoTyper automatically types messages and clicks Send in messaging apps. Only activates when you press START on the floating overlay.</string>
+</resources>

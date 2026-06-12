@@ -1,0 +1,18 @@
+# Android build outputs
+/build/
+/app/build/
+*.apk
+*.aab
+*.ap_
+
+# Local config (isko commit MAT karna apne PC pe, lekin GitHub Actions ke liye include hai)
+# local.properties
+
+# IDE files
+.idea/
+*.iml
+.DS_Store
+
+# Gradle cache
+.gradle/
+gradle/wrapper/gradle-wrapper.jar

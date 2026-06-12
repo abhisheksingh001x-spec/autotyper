@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Main Activity Layout
+    ======================
+    Simple permission setup screen shown on first launch.
+    Users configure permissions here, then launch the overlay and navigate away.
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D1F">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PF AutoTyper"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Control Panel Setup"
+            android:textColor="#8888CC"
+            android:textSize="14sp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Status Display -->
+        <TextView
+            android:id="@+id/tvPermissionStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checking permissions..."
+            android:textColor="#AAAACC"
+            android:textSize="14sp"
+            android:background="#1AFFFFFF"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Step 1: Overlay Permission -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 1: Grant Overlay Permission"
+            android:textColor="#CCCCFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required to display the floating control panel over other apps."
+            android:textColor="#888899"
+            android:textSize="13sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnRequestOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Grant Overlay Permission"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#7B2FBE"
+            android:layout_marginBottom="28dp" />
+
+        <!-- Step 2: Accessibility Service -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 2: Enable Accessibility Service"
+            android:textColor="#CCCCFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required to type and click Send in other apps.\n\nGo to: Settings → Accessibility → Installed Services → AutoTyper → Enable"
+            android:textColor="#888899"
+            android:textSize="13sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnOpenAccessibility"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Open Accessibility Settings"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1565C0"
+            android:layout_marginBottom="28dp" />
+
+        <!-- Step 3: Launch Overlay -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 3: Launch the Floating Overlay"
+            android:textColor="#CCCCFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="After launching, open Telegram/WhatsApp, open a chat, tap the input field, then tap START on the overlay."
+            android:textColor="#888899"
+            android:textSize="13sp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnLaunchOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Launch Floating Overlay"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2E7D32"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+
+</ScrollView>

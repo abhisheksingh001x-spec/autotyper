@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Simple vector launcher icon — purple background with white "AT" text.
+    Ye drawable ic_launcher ke jagah kaam karega jab tak real icon na ho.
+    AIDE mein: agar already ic_launcher.png hai toh ye file mat add karo,
+    warna conflict hoga.
+-->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Purple background -->
+    <path
+        android:fillColor="#7B2FBE"
+        android:pathData="M0,0h108v108h-108z" />
+
+    <!-- White "AT" letters -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20,72 L35,30 L54,72 M28,54 L46,54" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,30 L88,30 M74,30 L74,72"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6"
+        android:strokeLineCap="round" />
+
+</vector>

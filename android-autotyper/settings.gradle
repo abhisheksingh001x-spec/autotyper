@@ -1,0 +1,3 @@
+// settings.gradle (Groovy DSL — AIDE compatible, NOT .kts)
+rootProject.name = "AutoTyper"
+include ':app'
